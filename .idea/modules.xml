@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hotel.rating.system/ApiGateway/ApiGateway.iml" filepath="$PROJECT_DIR$/hotel.rating.system/ApiGateway/ApiGateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hotel.rating.system/HotelService/HotelService.iml" filepath="$PROJECT_DIR$/hotel.rating.system/HotelService/HotelService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hotel.rating.system/RatingService/RatingService.iml" filepath="$PROJECT_DIR$/hotel.rating.system/RatingService/RatingService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hotel.rating.system/ServiceRegistory/ServiceRegistory.iml" filepath="$PROJECT_DIR$/hotel.rating.system/ServiceRegistory/ServiceRegistory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hotel.rating.system/UserService/UserService.iml" filepath="$PROJECT_DIR$/hotel.rating.system/UserService/UserService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/microservices.iml" filepath="$PROJECT_DIR$/.idea/microservices.iml" />
+    </modules>
+  </component>
+</project>
