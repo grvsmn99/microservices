@@ -23,6 +23,13 @@ spring:
   config:
     import: optional:configserver:http://localhost:8085
 
-
+#Okta configuration for api gateway
+okta:
+  oauth2:
+    issuer: https://dev-42732055.okta.com/oauth2/default
+    audience: api://default
+    client-id: 0oa8syeub6iBgqFl75d7
+    client-secret: MJYCxiRB5__0XgQXMG-XYySvd0Z2kkqqMohCHUvi
+    scopes: openid, profile, email, offline_access
 
 
