@@ -3,6 +3,7 @@ package com.gaurav.user.service.controllers;
 import com.gaurav.user.service.entities.User;
 import com.gaurav.user.service.services.UserService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,16 +31,24 @@ public class UserController {
     int retryCount;
     @GetMapping("/{id}")
 //  @CircuitBreaker(name="ratingHotelBreaker",fallbackMethod = "ratingHotelFallback")
-    @Retry(name="ratingHotelRetry", fallbackMethod="ratingHotelRetryFallback")
+//  @Retry(name="ratingHotelRetry", fallbackMethod="ratingHotelRetryFallback")
+    @RateLimiter(name="userServiceRateLimiter", fallbackMethod="ratingHotelRateLimiterFallback")
     public ResponseEntity<User> getUser(@PathVariable(name="id") String userId){
-        logger.info("Retry count: {}",retryCount);
-        retryCount++;
+        //logger.info("Retry count: {}",retryCount);
+        //retryCount++;
         User user = userService.getUser(userId);
         return ResponseEntity.ok(user);
     }
+    //Create a method for Fallback to Ratelimiter
+    public ResponseEntity<User> ratingHotelRateLimiterFallback(String userId, Exception ex){
+        logger.info("ratingHotelRateLimiterFallback Fallback is excecuted!!!",ex.getMessage());
+        User user = User.builder().about("Its a dummy user!!!")
+                .email("dummy@dummymail.com")
+                .name("Dummy").build();
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 
     //Create a method for Fallback to retry
-
     public ResponseEntity<User> ratingHotelRetryFallback(String userId, Exception ex){
         logger.info("ratingHotelRetryFallback Fallback is excecuted!!!",ex.getMessage());
         User user = User.builder().about("Its a dummy user!!!")
